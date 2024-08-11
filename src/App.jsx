@@ -1,27 +1,17 @@
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 export default function StateForm() {
-  // フォームとして扱う値をStateとして宣言
-  const [form, setForm] = useState({
-    name: "山田太郎",
-    age: 18,
-  });
-
-  // フォーム要素の変更をStateに反映
-  const handleForm = (e) => {
-    setForm({
-      ...form,
-      // ここはなに？
-      [e.target.value]: e.target.value,
-    });
-  };
+  const name = useRef(null);
+  const age = useRef(null);
 
   const show = () => {
-    console.log(`こんにちは、${form.name}(${form.age}歳)さん！`);
+    console.log(
+      `こんにちは、${name.current.value}(${age.current.value}歳)さん！`
+    );
   };
 
   return (
@@ -32,28 +22,20 @@ export default function StateForm() {
           id="name"
           name="name"
           type="text"
-          onChange={handleForm}
-          value={form.name}
+          ref={name}
+          defaultValue="佐藤尚之"
         />
       </div>
       <div>
         <label htmlFor="age">年齢：</label>
-        <input
-          id="age"
-          name="age"
-          type="number"
-          onChange={handleForm}
-          value={form.age}
-        />
+        <input id="age" name="age" type="number" ref={age} defaultValue="18" />
       </div>
       <div>
         <button type="button" onClick={show}>
           送信
         </button>
       </div>
-      <p>
-        こんにちは、{form.name}({form.age}歳)さん！
-      </p>
+      <p>{`こんにちは、${name.current.value}さん！`}</p>
     </form>
   );
 }
