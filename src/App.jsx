@@ -4,7 +4,7 @@
 import { useRef, useState } from "react";
 import "./App.css";
 
-export default function StateForm() {
+export default function App() {
   const name = useRef(null);
   const age = useRef(null);
 
@@ -15,27 +15,35 @@ export default function StateForm() {
   };
 
   return (
-    <form>
-      <div>
-        <label htmlFor="name">名前：</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          ref={name}
-          defaultValue="佐藤尚之"
-        />
-      </div>
-      <div>
-        <label htmlFor="age">年齢：</label>
-        <input id="age" name="age" type="number" ref={age} defaultValue="18" />
-      </div>
-      <div>
-        <button type="button" onClick={show}>
-          送信
-        </button>
-      </div>
-      <p>{`こんにちは、${name.current.value}さん！`}</p>
-    </form>
+    <>
+      <form>
+        <div>
+          <label htmlFor="name">名前：</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            ref={name}
+            defaultValue="佐藤尚之です"
+          />
+        </div>
+        <div>
+          <label htmlFor="age">年齢：</label>
+          <input
+            id="age"
+            name="age"
+            type="number"
+            ref={age}
+            defaultValue="18"
+          />
+        </div>
+        <div>
+          <button type="button" onClick={show}>
+            送信
+          </button>
+        </div>
+      </form>
+      {/* <p>{`こんにちは、${name.current.value}さん！`}</p> */}
+    </>
   );
 }
